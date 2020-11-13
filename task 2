@@ -1,36 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 100
+#define size 10
  
 int main() 
 {
-    int a[N], i, j, b;
+  int nums[size];
+  int i, j, b;
 
-    srand(time(NULL));
+  srand(time(NULL));
 
-    for (i=0; i<N; i++) 
+  for (i = 0; i < size; i++) 
+  {
+    nums[i] = rand() % 100;
+    printf("%3d", nums[i]);
+  }
+  printf("\n");
+
+  for (i = 0; i < size - 1; i++) 
+  {
+    for (j = 0; j < size - i - 1; j++) 
     {
-      a[i] = rand()%100;
-      printf("%3d", a[i]);
-    }
-    printf("\n");
- 
-    for (i=0; i < N-1; i++) 
-    {
-      for (j=0; j < N-i-1; j++) 
+      if (nums[j] > nums[j + 1]) 
       {
-        if (a[j] > a[j+1]) 
-        {
-          b = a[j];
-          a[j] = a[j+1];
-          a[j+1] = b;
-        }
+        b = nums[j];
+        nums[j] = nums[j+1];
+        nums[j + 1] = b;
       }
     }
- 
-    for (i=0; i<N; i++)
-    
-    printf("%3d", a[i]);
-    printf("\n");
+  }
+
+  for (i = 0; i < size; i++)
+  {
+    printf("%3d", nums[i]);
+  }
+
+  printf("\n");
 }
