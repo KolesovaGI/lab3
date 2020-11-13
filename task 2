@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define size 10
+#define size 20
  
 int main() 
 {
@@ -24,7 +24,7 @@ int main()
       if (nums[j] > nums[j + 1]) 
       {
         b = nums[j];
-        nums[j] = nums[j+1];
+        nums[j] = nums[j + 1];
         nums[j + 1] = b;
       }
     }
