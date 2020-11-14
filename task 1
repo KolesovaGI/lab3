@@ -74,13 +74,13 @@ int mediana(int a[])
 {
   for (int i = 0; i < size - 1; i++)
   {
-    for (int q = 0; q < size - i - 1; q++)
+    for (int i = 0; i < size - i - 1; i++)
     {
-      if (a[q] > a[q + 1])
+      if (a[i] > a[i + 1])
       {
-        a[q] = a[q] + a[q + 1];
-        a[q + 1] = a[q] - a[q + 1];
-        a[q] = a[q] - a[q + 1];
+        a[i] = a[i] + a[i + 1];
+        a[i + 1] = a[i] - a[i + 1];
+        a[i] = a[i] - a[i + 1];
       }
     }
   }
