@@ -4,12 +4,12 @@
 
 #define size 10
 
-short maximal(int a[]);
-short minimum(int a[]);
-double average(int a[]);
-short median(int a[]);
+int maximal(int a[]);
+int minimum(int a[]);
+float average(int a[]);
+int median(int a[]);
 
-short maximal(int a[])
+int maximal(int a[])
 {
   int maximal = a[0];
 
@@ -24,7 +24,7 @@ short maximal(int a[])
   return maximal;
 }
 
-short minimum(int a[])
+int minimum(int a[])
 {
   int minimum = a[0];
 
@@ -39,7 +39,7 @@ short minimum(int a[])
   return minimum;
 }
 
-double average(int a[])
+float average(int a[])
 {
   double average = 0;
 
@@ -51,7 +51,7 @@ double average(int a[])
   return average / size;
 }
 
-short median(int a[])
+int median(int a[])
 {
   for (int i = 0; i < size - 1; i++)
   {
@@ -92,6 +92,6 @@ int main(void)
   printf("\n\n");
   printf("Maximal digit = %d\n\n", maximal(a));
   printf("Minimal digit = %d\n\n", minimum(a));
-  printf("Average digit = %.3lf\n\n", average(a));
+  printf("Average digit = %.1f\n\n", average(a));
   printf("Median = %d\n\n", median(a));
 }
