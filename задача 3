@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define size 10
+
+void quick_sort(int a[], int left, int right);
+
+int main ()
+{
+  int a[size];
+
+  srand (time(NULL));
+
+  for (int i = 0; i < size; i++)
+  {
+    a[i] = rand () % 100;
+
+    printf ("%d ", a[i]);
+  }
+
+  printf ("\n");
+
+  quick_sort (a, 0, size - 1);
+
+  for (int j = 0; j < size; j++)
+  {
+    printf ("%d ", a[j]);
+  }
+}
+
+void quick_sort (int a[], int left, int right)
+{
+  
+  int mid = a[size / 2];
+
+  while ((a[right] >= mid) && (a[left] < a[right]))
+  {
+    right --;
+  }
+
+  if (left != right)
+  {
+    a[left] = a[right];
+    left++;
+  }
+
+  while ((a[right] <= mid) && (a[left] < a[right]))
+  {
+    left++;
+  }
+
+  if (left != right)
+  {
+    right--;
+  }
+
+  a[left] = mid;
+  mid = left;
+  left = a[left];
+  right = a[right];
+
+  if (left < mid)
+  {
+    quick_sort (a, left, mid - 1);
+  }
+
+  if (right > mid)
+  {
+    quick_sort (a, mid + 1, right);
+  }
+}
