@@ -10,27 +10,27 @@ int main(void)
 {
     int a[size];
 
-    srand(time(NULL));
+    srand (time(NULL));
 
     for (int i = 0; i < size; i++)
     {
-        a[i] = rand() % 100;
+        a[i] = rand () % 100;
 
-        printf(" %d ", a[i]);
+        printf ("%d ", a[i]);
     }
-    printf("\n\n");
+    printf ("\n\n");
 
-    quick_sort(a, 0, size - 1);
+    quick_sort (a, 0, size - 1);
 
     for (int i = 0; i < size; i++)
     {
-        printf(" %d ", a[i]);
+        printf ("%d ", a[i]);
     }
 }
 
 void quick_sort (int a[], int left, int right)
 {
-    int begin = left;
+    int start = left;
     int end = right;
     int tmp = a[left];
 
@@ -56,16 +56,16 @@ void quick_sort (int a[], int left, int right)
 
     a[left] = tmp;
     tmp = left;
-    left = begin;
+    left = start;
     right = end;
 
     if (left < tmp)
     {
-      quick_sort(a, left, tmp - 1);
+      quick_sort (a, left, tmp - 1);
     }
 
     if (right > tmp)
     {
-      quick_sort(a, tmp + 1, right);
+      quick_sort (a, tmp + 1, right);
     }
 }
