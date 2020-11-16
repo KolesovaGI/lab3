@@ -30,13 +30,13 @@ int main(void)
 
 void quick_sort (int a[], int left, int right)
 {
-    int left_hold = left;
-    int right_hold = right;
-    int cache = a[left];
+    int begin = left;
+    int end = right;
+    int tmp = a[left];
 
     while (left < right)
     {
-        while ((a[right] >= cache) && (left < right))
+        while ((left < right) && (a[right] >= tmp))
         {
             right--;
         }
@@ -45,7 +45,7 @@ void quick_sort (int a[], int left, int right)
             a[left] = a[right];
             left++;
         }
-        while ((a[left] <= cache) && (left < right))
+        while ((a[left] <= tmp) && (left < right))
             left++;
         if (left != right)
         {
@@ -54,14 +54,18 @@ void quick_sort (int a[], int left, int right)
         }
     }
 
-    a[left] = cache;
-    cache = left;
-    left = left_hold;
-    right = right_hold;
+    a[left] = tmp;
+    tmp = left;
+    left = begin;
+    right = end;
 
-    if (left < cache)
-        quick_sort(a, left, cache - 1);
+    if (left < tmp)
+    {
+      quick_sort(a, left, tmp - 1);
+    }
 
-    if (right > cache)
-        quick_sort(a, cache + 1, right);
+    if (right > tmp)
+    {
+      quick_sort(a, tmp + 1, right);
+    }
 }
