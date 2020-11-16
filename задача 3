@@ -1,72 +1,65 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
 
-#define size 20
+#define size 10
 
-void quick_sort(int a[], int left, int right);
-
-int main (void)
+void quick_sort(int a[], int left, int right)
 {
-  int a[size];
+    int left_hold = left;
+    int right_hold = right;
+    int cache = a[left];
 
-  srand (time(NULL));
+    while (left < right)
+    {
+        while ((a[right] >= cache) && (left < right))
+        {
+            right--;
+        }
+        if (left != right)
+        {
+            a[left] = a[right];
+            left++;
+        }
+        while ((a[left] <= cache) && (left < right))
+            left++;
+        if (left != right)
+        {
+            a[right] = a[left];
+            right--;
+        }
+    }
 
-  for (int i = 0; i < size; i++)
-  {
-    a[i] = rand () % 100;
+    a[left] = cache;
+    cache = left;
+    left = left_hold;
+    right = right_hold;
 
-    printf ("%d ", a[i]);
-  }
+    if (left < cache)
+        quick_sort(a, left, cache - 1);
 
-  printf ("\n\n");
-
-  quick_sort (a, 0, size - 1);
-
-  for (int j = 0; j < size; j++)
-  {
-    printf ("%d ", a[j]);
-  }
+    if (right > cache)
+        quick_sort(a, cache + 1, right);
 }
 
-void quick_sort (int a[], int left, int right)
+int main(void)
 {
-  
-  int mid = a[size / 2];
+    int a[size];
 
-  while ((a[right] <= mid) && (a[left] < a[right]))
-  {
-    left++;
-  }
+    srand(time(NULL));
 
-  if (left != right)
-  {
-    a[left] = a[right];
-    left++;
-  }
+    for (int i = 0; i < size; i++)
+    {
+        a[i] = rand() % 100;
 
-  while ((a[right] >= mid) && (a[left] < a[right]))
-  {
-    right --;
-  }
-  
-  if (left != right)
-  {
-    right--;
-  }
+        printf(" %d ", a[i]);
+    }
+    printf("\n\n");
 
-  a[left] = mid;
-  mid = left;
-  left = a[left];
-  right = a[right];
+    quick_sort(a, 0, size - 1);
 
-  if (left < mid)
-  {
-    quick_sort (a, left, mid - 1);
-  }
-
-  if (right > mid)
-  {
-    quick_sort (a, mid + 1, right);
-  }
+    for (int i = 0; i < size; i++)
+    {
+        printf(" %d ", a[i]);
+    }
 }
