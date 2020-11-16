@@ -4,7 +4,31 @@
 
 #define size 10
 
-void quick_sort(int a[], int left, int right)
+void quick_sort (int a[], int left, int right);
+
+int main(void)
+{
+    int a[size];
+
+    srand(time(NULL));
+
+    for (int i = 0; i < size; i++)
+    {
+        a[i] = rand() % 100;
+
+        printf(" %d ", a[i]);
+    }
+    printf("\n\n");
+
+    quick_sort(a, 0, size - 1);
+
+    for (int i = 0; i < size; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+}
+
+void quick_sort (int a[], int left, int right)
 {
     int left_hold = left;
     int right_hold = right;
@@ -40,26 +64,4 @@ void quick_sort(int a[], int left, int right)
 
     if (right > cache)
         quick_sort(a, cache + 1, right);
-}
-
-int main(void)
-{
-    int a[size];
-
-    srand(time(NULL));
-
-    for (int i = 0; i < size; i++)
-    {
-        a[i] = rand() % 100;
-
-        printf(" %d ", a[i]);
-    }
-    printf("\n\n");
-
-    quick_sort(a, 0, size - 1);
-
-    for (int i = 0; i < size; i++)
-    {
-        printf(" %d ", a[i]);
-    }
 }
