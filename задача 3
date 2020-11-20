@@ -1,71 +1,93 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define size 10
 
-void quick_sort (int a[], int left, int right);
+void sift_down(int *numbers, int root, int bottom);
+void heap_sort(int *numbers, int array_size);
 
-int main(void)
+int main ()
 {
-    int a[size];
+  int a[size];
 
-    srand (time(NULL));
+  srand(time(NULL));
 
-    for (int i = 0; i < size; i++)
-    {
-        a[i] = rand () % 100;
+  for (int i = 0; i < size; i++)
+  {
+    a[i] = rand() % 100;
+  }
 
-        printf ("%d ", a[i]);
-    }
-    printf ("\n\n");
+  for (int i = 0; i < size; i++)
+  {
+    printf("%d ", a[i]);
+  }
 
-    quick_sort (a, 0, size - 1);
+  printf("\n");
 
-    for (int i = 0; i < size; i++)
-    {
-        printf ("%d ", a[i]);
-    }
+  heap_sort(a, 10);
+
+  for (int i = 0;  i< size; i++)
+  {
+    printf("%d ", a[i]);
+  }
+
+  printf("\n");
+
+  return 0;
 }
 
-void quick_sort (int a[], int left, int right)
+void sift_down(int *numbers, int root, int bottom)
 {
-    int start = left;
-    int end = right;
-    int tmp = a[left];
+  int max_child;
+  int done = 0;
 
-    while (left < right)
+  while ((root * 2 <= bottom) && (!done))
+  {
+    if (root * 2 == bottom)
     {
-        while ((left < right) && (a[right] >= tmp))
-        {
-            right--;
-        }
-        if (left != right)
-        {
-            a[left] = a[right];
-            left++;
-        }
-        while ((a[left] <= tmp) && (left < right))
-            left++;
-        if (left != right)
-        {
-            a[right] = a[left];
-            right--;
-        }
+      max_child = root * 2;
     }
 
-    a[left] = tmp;
-    tmp = left;
-    left = start;
-    right = end;
-
-    if (left < tmp)
+    else if (numbers[root * 2] > numbers[root * 2 + 1])
     {
-      quick_sort (a, left, tmp - 1);
+      max_child = root * 2;
     }
 
-    if (right > tmp)
+    else
     {
-      quick_sort (a, tmp + 1, right);
+      max_child = root * 2 + 1;
     }
+
+    if (numbers[root] < numbers[max_child])
+    {
+      int temp = numbers[root];
+
+      numbers[root] = numbers[max_child];
+      numbers[max_child] = temp;
+      root = max_child;
+    }
+
+    else
+    {
+      done = 1;
+    }
+  }
+}
+
+void heap_sort(int *numbers, int array_size)
+{
+  for (int i = (array_size / 2) - 1; i >= 0; i--)
+  {
+    sift_down (numbers, i, array_size - 1);
+  }
+
+  for (int i = array_size - 1; i >= 1; i--)
+  {
+    int temp = numbers[0];
+
+    numbers[0] = numbers[i];
+    numbers[i] = temp;
+    sift_down(numbers, 0, i - 1);
+  }
 }
