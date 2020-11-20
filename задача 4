@@ -24,20 +24,14 @@ int main (void)
   FILE* task_three;
   task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "r");
 
-  if (task_three == 0)
+  
+  for (int i = 0; i < size; i++)
   {
-    printf ("Error");
+    fscanf(task_three, "%d", &a[i]);
   }
 
-  else
-  {
-    for (int i = 0; i < size; i++)
-    {
-      fscanf(task_three, "%d", &a[i]);
-    }
-
-    fclose (task_three);
-  }
+  fclose (task_three);
+  
 
   task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "a");
 
