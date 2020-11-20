@@ -9,7 +9,7 @@ int min(int a[]);
 float middle(int a[]);
 int mediana(int a[]);
 
-int main ()
+int main (void)
 {
   int a[size];
 
@@ -21,10 +21,10 @@ int main ()
     printf("%d ", a[i]);
   }
   
-  FILE* file;
-  file = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "r");
+  FILE* task_three;
+  task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "r");
 
-  if (file == 0)
+  if (task_three == 0)
   {
     printf ("Error");
   }
@@ -33,22 +33,20 @@ int main ()
   {
     for (int i = 0; i < size; i++)
     {
-      fscanf(file, "%d", &a[i]);
+      fscanf(task_three, "%d", &a[i]);
     }
 
-    fclose (file);
+    fclose (task_three);
   }
 
-  file = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "a");
+  task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "a");
 
-  fprintf (file, "Maximal number in the array = %d\n", max(a));
-  fprintf (file, "Minimal number in the array = %d\n", min(a));
-  fprintf (file, "Middle number in the array = %.1f\n", middle(a));
-  fprintf (file, "Median of the array = %d\n", mediana(a));
+  fprintf (task_three, "Maximal number in the array = %d\n", max(a));
+  fprintf (task_three, "Minimal number in the array = %d\n", min(a));
+  fprintf (task_three, "Middle number in the array = %.1f\n", middle(a));
+  fprintf (task_three, "Median of the array = %d\n", mediana(a));
 
-  fclose (file);
-
-  return 0;
+  fclose (task_three);
 }
 
 int min(int a[])
