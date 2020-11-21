@@ -1,112 +1,121 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 
 #define size 10
 
-int max(int a[]);
-int min(int a[]);
+int maximum(int a[]);
+int minimum(int a[]);
 float middle(int a[]);
 int mediana(int a[]);
 
-int main (void)
+int main(void)
 {
-  int a[size];
+    int a[size];
 
-  srand(time(NULL));
+    srand(time(NULL));
 
-  for (int i = 0; i < size; i++)
-  {
-    a[i] = rand() % 100;
-    printf("%d ", a[i]);
-  }
-  
-  FILE* task_three;
-  task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "r");
+    for (int i = 0; i < size; i++)
+    {
+        a[i] = rand() % 100;
+        printf("%d ", a[i]);
+    }
 
-  
-  for (int i = 0; i < size; i++)
-  {
-    fscanf(task_three, "%d", &a[i]);
-  }
+    FILE* task_three; 
+    task_three = fopen("C:\\Users\\1\\Desktop\\homeworks\\task_three.txt", "r");
 
-  fclose (task_three);
-  
+    if (task_three == 0)
+    {
+        printf("Error");
+    }
 
-  task_three = fopen ("C:\\Users\\1\\Desktop\\Домашние задания готовые\\lab3\\ayetatar.txt", "a");
+    else
+    {
 
-  fprintf (task_three, "Maximal number in the array = %d\n", max(a));
-  fprintf (task_three, "Minimal number in the array = %d\n", min(a));
-  fprintf (task_three, "Middle number in the array = %.1f\n", middle(a));
-  fprintf (task_three, "Median of the array = %d\n", mediana(a));
+        for (int i = 0; i < size; i++)
+        {
+            fscanf(task_three, "%d", &a[i]);
+        }
 
-  fclose (task_three);
+        fclose(task_three);
+    }
+
+
+    task_three = fopen("C:\\Users\\1\\Desktop\\homeworks\\task_three.txt", "a");
+
+    fprintf(task_three, "Maximal number in the array = %d\n", maximum(a));
+    fprintf(task_three, "Minimal number in the array = %d\n", minimum(a));
+    fprintf(task_three, "Middle number in the array = %.1f\n", middle(a));
+    fprintf(task_three, "Median of the array = %d\n", mediana(a));
+
+    fclose(task_three);
 }
 
-int min(int a[])
+int minimum(int a[])
 {
-  int min = a[0];
+    int min = a[0];
 
-  for (int i = 1; i < size; i++)
-  {
-    if (a[i] < min)
+    for (int i = 1; i < size; i++)
     {
-      min = a[i];
+        if (a[i] < min)
+        {
+            min = a[i];
+        }
     }
-  }
 
-  return min;
+    return min;
 }
 
-int max(int a[])
+int maximum(int a[])
 {
-  int max = a[0];
+    int max = a[0];
 
-  for (int i = 1; i < size; i++)
-  {
-    if (a[i] > max)
+    for (int i = 1; i < size; i++)
     {
-      max = a[i];
+        if (a[i] > max)
+        {
+            max = a[i];
+        }
     }
-  }
 
-  return max;
+    return max;
 }
 
 float middle(int a[])
 {
-  double middle = 0;
+    double middle = 0;
 
-  for (int i = 0; i < size; i++)
-  {
-    middle += a[i];
-  }
+    for (int i = 0; i < size; i++)
+    {
+        middle += a[i];
+    }
 
-  return middle / size;
+    return middle / size;
 }
 
 int mediana(int a[])
 {
-  for (int i = 0; i < size - 1; i++)
-  {
-    for (int i = 0; i < size - i - 1; i++)
+    for (int i = 0; i < size - 1; i++)
     {
-      if (a[i] > a[i + 1])
-      {
-        a[i] = a[i] + a[i + 1];
-        a[i + 1] = a[i] - a[i + 1];
-        a[i] = a[i] - a[i + 1];
-      }
+        for (int i = 0; i < size - i - 1; i++)
+        {
+            if (a[i] > a[i + 1])
+            {
+                a[i] = a[i] + a[i + 1];
+                a[i + 1] = a[i] - a[i + 1];
+                a[i] = a[i] - a[i + 1];
+            }
+        }
     }
-  }
 
-  if (size % 2 != 0)
-  {
-    return a[size / 2];
-  }
+    if (size % 2 != 0)
+    {
+        return a[size / 2];
+    }
 
-  else
-  {
-    return (a[size / 2] + a[size / 2 - 1]) / 2;
-  }
+    else
+    {
+        return (a[size / 2] + a[size / 2 - 1]) / 2;
+    }
 }
